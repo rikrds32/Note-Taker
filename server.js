@@ -54,3 +54,11 @@ app.delete('/api/notes/:id', function (req, res) {
         res.send(newNotesList);
     });
 });
+
+app.get('*', function (req, res) {
+    res.sendFile(path.join(__dirname, "./public/index.html"));
+});
+
+app.listen(PORT, function(){
+    console.log("app listening on port : "+PORT);
+});
