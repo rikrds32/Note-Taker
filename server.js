@@ -10,10 +10,18 @@ app.use(express.json());
 
 app.use(express.static(path.join(__dirname, 'public' )));
 
-app.get("/", function(req, res) {
+app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, "./public/index.html"));
 });
 
-app.get("/notes", function(req, res) {
+app.get('/notes', function(req, res) {
 res.sendFile(path.join(__dirname, "./public/notes.html"));
 });
+
+app.get('/api/notes', function(req, res) {
+    fs.readFile("./db/db.json",(err, data) =>{
+        if(err) throw err;
+        res.json(JSON.parse(data));
+    });
+});
+
